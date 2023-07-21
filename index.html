@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Crash Bandicoot</title>
+  </head>
+  <body>
+    <main>
+      <!-- #game-intro is initially shown on the game start screen -->
+      <div id="game-intro">
+        <img
+          src="../crash-bandicoot-game-js/images/bugalha.png"
+          alt=""
+          class="logo-img"
+        />
+        <br />
+        <button id="start-button">Start Game</button>
+        <br />
+        <img
+          src="../crash-bandicoot-game-js/images/keys.gif"
+          alt=""
+          class="arrows-img"
+        />
+      </div>
+
+      <div id="game-container">
+        <div>
+          <p>Score: <span id="score">0</span></p>
+          <p>Lives: <span id="lives">3</span></p>
+        </div>
+        <!-- #game-screen is initially hidden using CSS style display: none -->
+        <div id="game-screen"></div>
+      </div>
+
+      <!-- #game-end is initially hidden using CSS style display: none -->
+      <div id="game-end">
+        <img src="" alt="" class="logo-img" />
+        <h1>Game Over</h1>
+        <br />
+        <button id="restart-button">Try Again!</button>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="js/enemy.js"></script>
+    <script type="text/javascript" src="js/enemy2.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>

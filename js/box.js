@@ -3,12 +3,12 @@ class Box {
     this.gameScreen = gameScreen;
 
     // Random position for the appearance of the obstacles
-    this.top = Math.floor(Math.random() * 200 + 100);
+    this.top = Math.floor(Math.random() * 400 + 100);
 
     // Appear on right
     this.right = -50;
     this.width = 100;
-    this.height = 150;
+    this.height = 100;
 
     // Create the HTML element and default styling
     this.element = document.createElement('img');

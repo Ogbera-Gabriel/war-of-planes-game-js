@@ -11,37 +11,49 @@ body {
 }
 
 #game-intro {
-  padding: 20px 0px;
+  padding: 20px 0px; 
 }
 
+#game-intro > p {
+  text-align: left;
+  font-family: 'Bungee Spice', sans-serif ;
+}
+
+
 #game-container {
-  display: flex;
+  /* display: flex; */
   width: 100vw;
   padding: 20px 0px;
   justify-content: center;
+  
 }
 #game-container > div {
   color: #fff;
   display: flex;
   font-size: 20px;
+  z-index: 1;
 }
 #game-container p {
   padding: 0 20px;
+  font-family: 'Bungee Spice', sans-serif;
+  
 }
+
+
 
 #game-screen {
   display: none;
   align-content: center;
   overflow: hidden;
   position: relative;
-  background-image: url();
-  border: 3px #fff solid;
+  background: url("./images/background.png");
+  /* border: 3px #fff solid; */
   background-size: cover;
-  animation: slide 5s linear infinite;
+  animation: slide 20s linear infinite;
 }
 
 @keyframes slide {
-  0% {
+  /* 0% {
     background-position: 0 -1000px;
   }
   95% {
@@ -49,7 +61,10 @@ body {
   }
   100% {
     background-position: 0 50px;
-  }
+  } */
+   from { background-position: -512px -512px; }
+    to { background-position: 0 0; }
+
 }
 
 #game-end {
@@ -68,6 +83,19 @@ body {
 
 .arrows-img {
   width: 100px;
+}
+
+.endLogo-img {
+  width: 250px;
+  padding:  30px 0;
+ 
+}
+
+
+
+.endGame-img {
+  width: 300px;
+  margin-bottom: 30px;
 }
 
 body button {

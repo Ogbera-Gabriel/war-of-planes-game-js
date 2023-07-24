@@ -7,13 +7,13 @@ class Enemy {
 
     // Appear on top
     this.left = -50;
-    this.width = 100;
-    this.height = 150;
+    this.width = 150;
+    this.height = 100;
 
     // Create the HTML element and default styling
     this.element = document.createElement('img');
     //creating different enemies randomly
-    this.images = ['./images/enemy.png', './images/enemy2.png', './images/enemy3.png', './images/enemy4.png'];
+    this.images = ['./images/enemy.png', './images/enemy2.png', './images/enemy3.png', './images/enemy4.png', './images/enemy5.png'];
     this.randomImages = Math.floor(Math.random()* this.images.length)
     this.element.src = `${this.images[this.randomImages]}`
     this.element.style.position = 'absolute';

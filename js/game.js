@@ -9,16 +9,16 @@ class Game {
     // Player
     this.player = new Player(
       this.gameScreen,
-      200,
-      500,
-      100,
+      600,
+      180,
       150,
-      './images/crash2.png'
+      150,
+      './images/plane.png'
     );
 
     // Style for the game board
-    this.width = 1500;
-    this.height = 600;
+    this.width = 1900;
+    this.height = 700;
 
     // Obstacles - generic elements that look the same, we can put them in an array. If we have different obstacles, it can be an array of objects.
     this.enemies = [];
@@ -88,11 +88,14 @@ class Game {
 
     this.player.move();
 
+    console.log(this.width)
+    console.log(this.height)
+
 
     for (let i = 0; i < this.boxes.length; i++) {
       const box = this.boxes[i];
       box.move();
-      console.log(this.boxes);
+      
 
       // Check if the players collided with an box
       if (this.player.didCollideBox(box)) {

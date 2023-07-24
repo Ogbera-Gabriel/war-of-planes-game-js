@@ -13,7 +13,7 @@ class Enemy {
     // Create the HTML element and default styling
     this.element = document.createElement('img');
     //creating different enemies randomly
-    this.images = ['./images/enemy.png', './images/enemy2.png', './images/enemy3.png', './images/enemy4.png', './images/enemy5.png'];
+    this.images = ['docs/images/enemy.png', 'docs/images/enemy2.png', 'docs/images/enemy3.png', 'docs/images/enemy4.png', 'docs/images/enemy5.png'];
     this.randomImages = Math.floor(Math.random()* this.images.length)
     this.element.src = `${this.images[this.randomImages]}`
     this.element.style.position = 'absolute';

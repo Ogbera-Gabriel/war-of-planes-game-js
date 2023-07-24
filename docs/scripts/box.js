@@ -13,7 +13,7 @@ class Box {
     // Create the HTML element and default styling
     this.element = document.createElement('img');
     //creating different boxes randomly
-    this.images = ['./images/box.png', './images/box2.png'];
+    this.images = ['docs/images/box.png', 'docs/images/box2.png'];
     this.randomImages = Math.floor(Math.random()* this.images.length)
     this.element.src = `${this.images[this.randomImages]}`
     this.element.style.position = 'absolute';

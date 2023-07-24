@@ -13,7 +13,7 @@ class Game {
       180,
       150,
       150,
-      './images/plane.png'
+      'docs/images/plane.png'
     );
 
     // Style for the game board

@@ -38,15 +38,12 @@ body {
   font-family: 'Bungee Spice', sans-serif;
   
 }
-
-
-
 #game-screen {
   display: none;
   align-content: center;
   overflow: hidden;
   position: relative;
-  background: url("./images/background.png");
+  background: url("/docs/images/background.png");
   /* border: 3px #fff solid; */
   background-size: cover;
   animation: slide 20s linear infinite;
@@ -77,24 +74,20 @@ body {
 }
 
 .logo-img {
-  width: 250px;
-  padding-bottom: 20px;
+  width: 1000px;
+  padding: 20px 0 ;
 }
 
 .arrows-img {
   width: 100px;
 }
 
-.endLogo-img {
-  width: 250px;
-  padding:  30px 0;
- 
-}
+
 
 
 
 .endGame-img {
-  width: 300px;
+  width: 700px;
   margin-bottom: 30px;
 }
 

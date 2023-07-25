@@ -4,7 +4,7 @@ window.onload = function () {
 
   let game;
 
-  
+  let shootSound = new Audio("docs/sounds/blaster.mp3")
   
 
   startButton.addEventListener('click', function () {
@@ -62,6 +62,7 @@ window.onload = function () {
         // Create a new bullet instance and add it to the game
         const bullet = new Bullet(game.gameScreen, game.player.left, game.player.top);
         game.bullets.push(bullet); // Add the bullet to the bullets array in the Game class
+        shootSound.play()
       }
     }
   }

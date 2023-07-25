@@ -50,6 +50,10 @@ class Game {
 
     this.frames = 0;
 
+    this.acceleration = 2``;
+
+    this.explosion = new Audio('docs/sounds/explosion.mp3')
+
   }
 
   start() {
@@ -83,11 +87,10 @@ class Game {
     }
 
     this.update();
-    this.frames++;
+    
 
     // this.frames ++;   to increase the velocity of the obstacles
 
-    console.log(this.frames)
 
     window.requestAnimationFrame(() => this.gameLoop());
 
@@ -142,7 +145,8 @@ class Game {
             enemy.element.remove();
             this.enemies.splice(j, 1);
             j--;
-
+            this.explosion.play();
+            
             // Increment the score
             this.score += 1;
             const scoreElement = document.getElementById('score');
@@ -180,6 +184,8 @@ class Game {
 
         this.lives--;
       }
+      box.right += this.acceleration;
+      
     }
     // Check for collision and if an obstacle is still on the screen
     for (let i = 0; i < this.enemies.length; i++) {
@@ -209,7 +215,16 @@ class Game {
         // Remove the obstacle from the array of obstacles
         this.enemies.splice(i, 1);
       }
-      //  this.changeLevel();
+    //   this.frames++;
+
+    //   console.log(this.frames)
+
+    //   {
+    //    if (this.frames  === 1500){
+    //       this.boxes.right += 10;
+ 
+    //    }
+    // }
 
     }
 
@@ -283,12 +298,7 @@ class Game {
       this.backgroundMusic = null;
   }
 
-  // changeLevel() {
-  //    if (this.frames  === 500){
-  //       this.boxes.right += 10;
-
-  //    }
-  // }
+    
 }
 
 

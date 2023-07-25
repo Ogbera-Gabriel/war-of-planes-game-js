@@ -15,6 +15,8 @@ class Player {
     this.element.style.left = `${left}px`;
     this.element.style.top = `${top}px`;
     this.gameScreen.appendChild(this.element);
+    this.crash = new Audio("docs/sounds/newBoxCrash.mp3");
+    this.collision = new Audio("docs/sounds/collision.mp3");
   }
 
   move() {
@@ -54,6 +56,7 @@ class Player {
       playerRect.top < enemyRect.bottom &&
       playerRect.bottom > enemyRect.top
     ) {
+      this.collision.play();
       return true;
     } else {
       return false;
@@ -69,6 +72,8 @@ class Player {
       playerRect.top < boxRect.bottom &&
       playerRect.bottom > boxRect.top
     ) {
+      this.crash.play();
+
       return true;
     } else {
       return false;

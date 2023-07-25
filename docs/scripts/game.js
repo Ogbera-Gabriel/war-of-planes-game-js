@@ -41,9 +41,17 @@ class Game {
 
     // GameOver Flag (booleans, while starting the gameover is false, while end-game, the gameover is true.)
     this.gameIsOver = false;
+
+    this.backgroundMusic = document.createElement("audio");
+    this.backgroundMusic.src = "/docs/sounds/intro.mp3";
+    this.gameScreen.appendChild(this.backgroundMusic);
+
+    
   }
 
   start() {
+    
+    this.backgroundMusic.play();
     // Set the height and width of game screen
     this.gameScreen.style.height = `${this.height}px`;
     this.gameScreen.style.width = `${this.width}px`;
@@ -61,6 +69,8 @@ class Game {
   // Creating an Animation Function
   gameLoop() {
     console.log('Game Loop');
+
+    
 
     // Check if the game's over to interrupt the game loop
     if (this.gameIsOver) {
@@ -81,6 +91,8 @@ class Game {
 
     score.innerHTML = this.score;
     lives.innerHTML = this.lives;
+
+    
 
     if (this.lives === 0) {
       this.endGame();
@@ -192,8 +204,10 @@ class Game {
   
     }
   }
+    
 
   endGame() {
+
     // Remove the player
     this.player.element.remove();
 
@@ -205,11 +219,17 @@ class Game {
 
     this.gameIsOver = true;
 
+    
+
     // Hide the game screen
     this.gameScreen.style.display = 'none';
 
     // Show end game screen
     this.gameEndScreen.style.display = 'block';
+
+    this.backgroundMusic.pause();
+    // initialise the variable in the constructor
+      this.backgroundMusic = null;
   }
 }
 

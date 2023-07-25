@@ -4,6 +4,9 @@ window.onload = function () {
 
   let game;
 
+  
+  
+
   startButton.addEventListener('click', function () {
     startGame();
   });
@@ -18,6 +21,9 @@ window.onload = function () {
     game = new Game();
 
     game.start();
+
+    
+    
   }
 
   function handleKeyDown(event) {
@@ -81,6 +87,15 @@ window.onload = function () {
       }
     }
   }
+
+  // if (key === ' ') { // Check if the spacebar (key code 32) is pressed
+  //   event.preventDefault();
+
+  //   if (game) {
+  //     // Create a new bullet instance and add it to the game
+  //     const bullet = new Bullet(game.gameScreen, game.player.left, game.player.top);
+  //   }
+  // }
 
   window.addEventListener('keydown', handleKeyDown);
   window.addEventListener('keyup', handleKeyUp);

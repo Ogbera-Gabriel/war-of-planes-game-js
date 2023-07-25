@@ -36,6 +36,8 @@ class Game {
     // Lives
     this.lives = 3;
 
+    this.bullets = []; // new change bullet array
+
     // Frames
     // this.frames = 0;   to increase the velocity of obstacles
 
@@ -46,11 +48,12 @@ class Game {
     this.backgroundMusic.src = "/docs/sounds/intro.mp3";
     this.gameScreen.appendChild(this.backgroundMusic);
 
-    
+    this.frames = 0;
+
   }
 
   start() {
-    
+
     this.backgroundMusic.play();
     // Set the height and width of game screen
     this.gameScreen.style.height = `${this.height}px`;
@@ -68,9 +71,11 @@ class Game {
 
   // Creating an Animation Function
   gameLoop() {
-    console.log('Game Loop');
 
-    
+
+
+
+
 
     // Check if the game's over to interrupt the game loop
     if (this.gameIsOver) {
@@ -78,10 +83,14 @@ class Game {
     }
 
     this.update();
+    this.frames++;
 
     // this.frames ++;   to increase the velocity of the obstacles
 
+    console.log(this.frames)
+
     window.requestAnimationFrame(() => this.gameLoop());
+
   }
 
   update() {
@@ -92,7 +101,7 @@ class Game {
     score.innerHTML = this.score;
     lives.innerHTML = this.lives;
 
-    
+
 
     if (this.lives === 0) {
       this.endGame();
@@ -100,14 +109,54 @@ class Game {
 
     this.player.move();
 
-    console.log(this.width)
-    console.log(this.height)
+
+
+    //bullet game logic for collision with enemy
+    for (let i = 0; i < this.bullets.length; i++) {
+      const bullet = this.bullets[i];
+      bullet.move();
+
+      // Check if the bullet is out of the screen, remove it
+      if (bullet.isOutOfScreen()) {
+        bullet.remove();
+        this.bullets.splice(i, 1);
+        i--;
+      } else {
+        // Check for collision between bullets and enemies
+        for (let j = 0; j < this.enemies.length; j++) {
+          const enemy = this.enemies[j];
+          const bulletRect = bullet.element.getBoundingClientRect();
+          const enemyRect = enemy.element.getBoundingClientRect();
+
+          if (
+            bulletRect.left < enemyRect.right &&
+            bulletRect.right > enemyRect.left &&
+            bulletRect.top < enemyRect.bottom &&
+            bulletRect.bottom > enemyRect.top
+          ) {
+            // Remove the bullet and enemy from the game
+            bullet.remove();
+            this.bullets.splice(i, 1);
+            i--;
+
+            enemy.element.remove();
+            this.enemies.splice(j, 1);
+            j--;
+
+            // Increment the score
+            this.score += 1;
+            const scoreElement = document.getElementById('score');
+            scoreElement.innerHTML = this.score;
+          }
+        }
+      }
+    }
 
 
     for (let i = 0; i < this.boxes.length; i++) {
       const box = this.boxes[i];
       box.move();
-      
+
 
       // Check if the players collided with an box
       if (this.player.didCollideBox(box)) {
@@ -128,6 +177,8 @@ class Game {
 
         // Remove the box from the array of boxes
         this.boxes.splice(i, 1);
+
+        this.lives--;
       }
     }
     // Check for collision and if an obstacle is still on the screen
@@ -158,14 +209,14 @@ class Game {
         // Remove the obstacle from the array of obstacles
         this.enemies.splice(i, 1);
       }
-      
-    
+      //  this.changeLevel();
+
     }
 
 
 
 
-  
+
     // this is for the enemies creation on the game screen
     if (!this.enemies.length && !this.isPushingObstacle) {
       this.isPushingObstacle = true;
@@ -181,10 +232,10 @@ class Game {
         this.enemies.push(new Enemy(this.gameScreen));
         this.isPushingObstacle = false;
       }, 2500);
-      
+
     }
 
-      
+
     if (!this.boxes.length && !this.isPushingBox) {
       this.isPushingBox = true;
       setTimeout(() => {
@@ -199,12 +250,12 @@ class Game {
       //   this.boxes.push(new Box(this.gameScreen));
       //   this.isPushingBox = false;
       // }, 1500);
-     
 
-  
+
+
     }
   }
-    
+
 
   endGame() {
 
@@ -219,7 +270,7 @@ class Game {
 
     this.gameIsOver = true;
 
-    
+
 
     // Hide the game screen
     this.gameScreen.style.display = 'none';
@@ -231,6 +282,13 @@ class Game {
     // initialise the variable in the constructor
       this.backgroundMusic = null;
   }
+
+  // changeLevel() {
+  //    if (this.frames  === 500){
+  //       this.boxes.right += 10;
+
+  //    }
+  // }
 }
 
 

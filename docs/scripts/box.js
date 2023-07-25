@@ -30,7 +30,7 @@ class Box {
     this.element.style.top = `${this.top}px`;
   }
   move() {
-    // Drop the obstacle 3px to the left;
+    // Drop the obstacle 3px to the right;
     this.right += 3;
     this.updatePosition();
   }

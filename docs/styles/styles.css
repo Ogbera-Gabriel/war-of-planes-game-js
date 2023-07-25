@@ -106,3 +106,13 @@ body button:hover {
   background-color: rgb(255, 102, 0);
   color: #fff;
 }
+
+/* CSS for the bullet */
+.bullet {
+  position: absolute;
+  width: 5px;
+  height: 100px;
+  background-color: red; /* You can change the color to your preference */
+  border-radius: 100%; /* This will give the bullet rounded edges */
+  z-index: 1; /* Set a higher z-index to make sure the bullet appears above other elements */
+}

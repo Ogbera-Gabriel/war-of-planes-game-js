@@ -1,10 +1,10 @@
 class Bullet {
     constructor(gameScreen, playerLeft, playerTop) {
       this.gameScreen = gameScreen;
-      this.width = 20;
-      this.height = 10;
-      this.left = playerLeft + 140; // Position the bullet relative to the player's left position
-      this.top = playerTop + 70; // Position the bullet relative to the player's top position
+      this.width = 10;
+      this.height = 20;
+      this.left = playerLeft + 70; // Position the bullet relative to the player's left position
+      this.top = playerTop + 0; // Position the bullet relative to the player's top position
       this.speed = 10;
   
       this.element = document.createElement('div');
@@ -19,8 +19,11 @@ class Bullet {
   
     move() {
       // Move the bullet to the right
-      this.left += this.speed;
-      this.element.style.left = `${this.left}px`;
+      this.top -= this.speed;
+      this.element.style.top = `${this.top}px`;
+      if (this.top + this.height < 0) {
+        this.remove();
+      }
     }
   
     isOutOfScreen() {

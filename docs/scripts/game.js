@@ -50,7 +50,7 @@ class Game {
 
     this.frames = 0;
 
-    this.acceleration = 2``;
+    this.acceleration = 2;
 
     this.explosion = new Audio('docs/sounds/explosion.mp3')
 
@@ -59,6 +59,7 @@ class Game {
   start() {
 
     this.backgroundMusic.play();
+    this.backgroundMusic.loop = true;
     // Set the height and width of game screen
     this.gameScreen.style.height = `${this.height}px`;
     this.gameScreen.style.width = `${this.width}px`;
@@ -75,10 +76,6 @@ class Game {
 
   // Creating an Animation Function
   gameLoop() {
-
-
-
-
 
 
     // Check if the game's over to interrupt the game loop
@@ -184,7 +181,11 @@ class Game {
 
         this.lives--;
       }
-      box.right += this.acceleration;
+      if (this.score > 50 && this.score < 100) {
+        box.right += 6;
+      } else if (this.score > 100) {
+        box.right += 100;
+      }
       
     }
     // Check for collision and if an obstacle is still on the screen

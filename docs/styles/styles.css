@@ -47,7 +47,7 @@ body {
   align-content: center;
   overflow: hidden;
   position: relative;
-  background: url('/docs/images/background1.png');
+  background: url('../images/background1.png');
   background-size: cover;
   animation: slide 20s linear infinite;
 }

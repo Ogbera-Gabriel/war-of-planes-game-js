@@ -42,7 +42,7 @@ class Game {
 
     // Adding background music
     this.backgroundMusic = document.createElement('audio');
-    this.backgroundMusic.src = 'docs/sounds/intro.mp3';
+    this.backgroundMusic.src = './docs/sounds/intro.mp3';
     this.gameScreen.appendChild(this.backgroundMusic);
 
     this.explosion = new Audio('docs/sounds/explosion.mp3');

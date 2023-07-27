@@ -1,6 +1,5 @@
 class Game {
   constructor() {
-    // Get all the possible screens
     // game-screen and game-end are initially hidden.
     this.startScreen = document.getElementById('game-intro');
     this.gameScreen = document.getElementById('game-screen');
@@ -20,7 +19,7 @@ class Game {
     this.width = 1900;
     this.height = 700;
 
-    // Obstacles - generic elements that look the same, we can put them in an array. If we have different obstacles, it can be an array of objects.
+    // Obstacles
     this.enemies = [];
 
     this.boxes = [];
@@ -38,26 +37,18 @@ class Game {
 
     this.bullets = []; // new change bullet array
 
-    // Frames
-    // this.frames = 0;   to increase the velocity of obstacles
-
     // GameOver Flag (booleans, while starting the gameover is false, while end-game, the gameover is true.)
     this.gameIsOver = false;
 
-    this.backgroundMusic = document.createElement("audio");
-    this.backgroundMusic.src = "/docs/sounds/intro.mp3";
+    // Adding background music
+    this.backgroundMusic = document.createElement('audio');
+    this.backgroundMusic.src = '/docs/sounds/intro.mp3';
     this.gameScreen.appendChild(this.backgroundMusic);
 
-    this.frames = 0;
-
-    this.acceleration = 2;
-
-    this.explosion = new Audio('docs/sounds/explosion.mp3')
-
+    this.explosion = new Audio('docs/sounds/explosion.mp3');
   }
 
   start() {
-
     this.backgroundMusic.play();
     this.backgroundMusic.loop = true;
     // Set the height and width of game screen
@@ -68,7 +59,7 @@ class Game {
     this.startScreen.style.display = 'none';
 
     // Show the Game Screen
-    this.gameScreen.style.display = 'block'; // we're displaying as a block element. For inline element is display inline.
+    this.gameScreen.style.display = 'block';
 
     // Start the Game Loop
     this.gameLoop();
@@ -76,32 +67,23 @@ class Game {
 
   // Creating an Animation Function
   gameLoop() {
-
-
     // Check if the game's over to interrupt the game loop
     if (this.gameIsOver) {
       return;
     }
 
     this.update();
-    
-
-    // this.frames ++;   to increase the velocity of the obstacles
-
 
     window.requestAnimationFrame(() => this.gameLoop());
-
   }
 
   update() {
-    // BONUS: scores and lives (first the score, then the lives and then move the car)
+    // BONUS: scores and lives
     let score = document.getElementById('score');
     let lives = document.getElementById('lives');
 
     score.innerHTML = this.score;
     lives.innerHTML = this.lives;
-
-
 
     if (this.lives === 0) {
       this.endGame();
@@ -109,9 +91,7 @@ class Game {
 
     this.player.move();
 
-
-
-    //bullet game logic for collision with enemy
+    // Bullet game logic for collision with enemy
     for (let i = 0; i < this.bullets.length; i++) {
       const bullet = this.bullets[i];
       bullet.move();
@@ -143,7 +123,7 @@ class Game {
             this.enemies.splice(j, 1);
             j--;
             this.explosion.play();
-            
+
             // Increment the score
             this.score += 1;
             const scoreElement = document.getElementById('score');
@@ -153,11 +133,9 @@ class Game {
       }
     }
 
-
     for (let i = 0; i < this.boxes.length; i++) {
       const box = this.boxes[i];
       box.move();
-
 
       // Check if the players collided with an box
       if (this.player.didCollideBox(box)) {
@@ -167,7 +145,7 @@ class Game {
         // Remove the box from the array
         this.boxes.splice(i, 1);
 
-        // Reduce player's live by 1
+        // Increase the score by 5 by hitting boxes
         this.score += 5;
       }
 
@@ -186,54 +164,35 @@ class Game {
       } else if (this.score > 100) {
         box.right += 100;
       }
-      
     }
-    // Check for collision and if an obstacle is still on the screen
+    // Check for collision and if an enemy is still on the screen
     for (let i = 0; i < this.enemies.length; i++) {
       const enemy = this.enemies[i];
       enemy.move();
 
-      // Check if the players collided with an obstacle
+      // Check if the players collided with an enemy
       if (this.player.didCollideEnemy(enemy)) {
-        // Remove the obstacle from the DOM/HTML
+        // Remove the enemy from the DOM/HTML
         enemy.element.remove();
 
-        // Remove the obstacle from the array
+        // Remove the enemy from the array
         this.enemies.splice(i, 1);
 
         // Reduce player's live by 1
         this.lives--;
       }
 
-      // Check if the obstacle is off the screen (at the bottom)
+      // Check if the enemy is off the screen (at the bottom)
       else if (enemy.left > this.width) {
-        // Congratulations to you, you avoided one obstacle
-        //this.score++;
-
-        // Remove the obstacle from the screen/DOM/HTML
+        // Remove the enemy from the screen/DOM/HTML
         enemy.element.remove();
 
-        // Remove the obstacle from the array of obstacles
+        // Remove the enemy from the array of obstacles
         this.enemies.splice(i, 1);
       }
-    //   this.frames++;
-
-    //   console.log(this.frames)
-
-    //   {
-    //    if (this.frames  === 1500){
-    //       this.boxes.right += 10;
- 
-    //    }
-    // }
-
     }
 
-
-
-
-
-    // this is for the enemies creation on the game screen
+    // Creating enemies on the game screen
     if (!this.enemies.length && !this.isPushingObstacle) {
       this.isPushingObstacle = true;
       setTimeout(() => {
@@ -248,9 +207,7 @@ class Game {
         this.enemies.push(new Enemy(this.gameScreen));
         this.isPushingObstacle = false;
       }, 2500);
-
     }
-
 
     if (!this.boxes.length && !this.isPushingBox) {
       this.isPushingBox = true;
@@ -262,31 +219,20 @@ class Game {
         this.boxes.push(new Box(this.gameScreen));
         this.isPushingBox = false;
       }, 3500);
-      // setTimeout(() => {
-      //   this.boxes.push(new Box(this.gameScreen));
-      //   this.isPushingBox = false;
-      // }, 1500);
-
-
-
     }
   }
 
-
   endGame() {
-
     // Remove the player
     this.player.element.remove();
 
-    // Remove all obstacles from the array of obstacles
+    // Remove all enemies from the array of enemies
     this.enemies.forEach((enemy) => {
-      // remove from the HTML
+      // Remove from the HTML
       enemy.element.remove();
     });
 
     this.gameIsOver = true;
-
-
 
     // Hide the game screen
     this.gameScreen.style.display = 'none';
@@ -295,11 +241,7 @@ class Game {
     this.gameEndScreen.style.display = 'block';
 
     this.backgroundMusic.pause();
-    // initialise the variable in the constructor
-      this.backgroundMusic = null;
+    // Initialize the variable in the constructor
+    this.backgroundMusic = null;
   }
-
-    
 }
-
-

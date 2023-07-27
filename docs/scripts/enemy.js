@@ -2,7 +2,7 @@ class Enemy {
   constructor(gameScreen) {
     this.gameScreen = gameScreen;
 
-    // Random position for the appearance of the obstacles
+    // Random position for the appearance of the enemies
     this.top = Math.floor(Math.random() * 400 + 100);
 
     // Appear on top
@@ -12,10 +12,17 @@ class Enemy {
 
     // Create the HTML element and default styling
     this.element = document.createElement('img');
-    //creating different enemies randomly
-    this.images = ['docs/images/enemy.png', 'docs/images/enemy2.png', 'docs/images/enemy3.png', 'docs/images/enemy4.png', 'docs/images/enemy5.png'];
-    this.randomImages = Math.floor(Math.random()* this.images.length)
-    this.element.src = `${this.images[this.randomImages]}`
+
+    // Creating different enemies randomly
+    this.images = [
+      'docs/images/enemy.png',
+      'docs/images/enemy2.png',
+      'docs/images/enemy3.png',
+      'docs/images/enemy4.png',
+      'docs/images/enemy5.png',
+    ];
+    this.randomImages = Math.floor(Math.random() * this.images.length);
+    this.element.src = `${this.images[this.randomImages]}`;
     this.element.style.position = 'absolute';
     this.element.style.top = `${this.top}px`;
     this.element.style.left = `${this.left}px`;
@@ -30,7 +37,7 @@ class Enemy {
     this.element.style.top = `${this.top}px`;
   }
   move() {
-    // Drop the obstacle 3px to the bottom;
+    // Drop the enemy 3px to the bottom;
     this.left += 3;
     this.updatePosition();
   }

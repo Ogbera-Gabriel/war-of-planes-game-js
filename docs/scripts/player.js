@@ -15,8 +15,8 @@ class Player {
     this.element.style.left = `${left}px`;
     this.element.style.top = `${top}px`;
     this.gameScreen.appendChild(this.element);
-    this.crash = new Audio("docs/sounds/newBoxCrash.mp3");
-    this.collision = new Audio("docs/sounds/collision.mp3");
+    this.crash = new Audio('docs/sounds/newBoxCrash.mp3');
+    this.collision = new Audio('docs/sounds/collision.mp3');
   }
 
   move() {

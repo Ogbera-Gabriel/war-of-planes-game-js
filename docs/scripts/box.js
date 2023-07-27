@@ -2,7 +2,7 @@ class Box {
   constructor(gameScreen) {
     this.gameScreen = gameScreen;
 
-    // Random position for the appearance of the obstacles
+    // Random position for the appearance of the boxes
     this.top = Math.floor(Math.random() * 400 + 100);
 
     // Appear on right
@@ -12,10 +12,10 @@ class Box {
 
     // Create the HTML element and default styling
     this.element = document.createElement('img');
-    //creating different boxes randomly
+    // Creating different boxes randomly
     this.images = ['docs/images/box.png', 'docs/images/box2.png'];
-    this.randomImages = Math.floor(Math.random()* this.images.length)
-    this.element.src = `${this.images[this.randomImages]}`
+    this.randomImages = Math.floor(Math.random() * this.images.length);
+    this.element.src = `${this.images[this.randomImages]}`;
     this.element.style.position = 'absolute';
     this.element.style.top = `${this.top}px`;
     this.element.style.right = `${this.right}px`;
@@ -30,7 +30,7 @@ class Box {
     this.element.style.top = `${this.top}px`;
   }
   move() {
-    // Drop the obstacle 3px to the right;
+    // Drop the box 3px to the right;
     this.right += 3;
     this.updatePosition();
   }
